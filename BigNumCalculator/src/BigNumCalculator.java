@@ -23,8 +23,8 @@ public class BigNumCalculator {
 	int operandOneLength;
 	int operandTwoLength;
 	
-	Stack operandOne;
-	Stack operandTwo;
+	Stack operandOneStack;
+	Stack operandTwoStack;
 	Stack sumOrDifference;
 
 	BigNumCalculator (String expression){
@@ -46,6 +46,11 @@ public class BigNumCalculator {
 		operandTwoIsNegative = determineNegOrPos(operandTwoString);
 		
 		appendZeroes();
+		
+		operandOneStack = stringToStack(operandOneStringZeroes);
+		operandTwoStack = stringToStack(operandTwoStringZeroes);
+		
+		sumOrDifference = calcSum(operandOneStack, operandTwoStack);
 
 	}
 	
@@ -96,36 +101,71 @@ public class BigNumCalculator {
 		String zeroesString = "";
 		
 		if(this.operandOneString.charAt(0) == '-') {
-			this.operandOneStringZeroes = this.operandOneString.substring(1);
+			this.operandOneStringZeroes = "0" + this.operandOneString.substring(1);
+		}else {
+			this.operandOneStringZeroes = "0" + this.operandOneString;
 		}
 		
 		if(this.operandTwoString.charAt(0) == '-') {
 			this.operandTwoStringZeroes = this.operandTwoString.substring(1);
+		}else {
+			this.operandTwoStringZeroes = this.operandTwoString;
 		}
-		
-		this.operandOneStringZeroes = "0" + this.operandOneString;
-		
-		for (int i = 0; i < (operandOneStringZeroes.length() - operandTwoString.length() + 1); i++) {
+				
+		for (int i = 0; i < (operandOneStringZeroes.length() - operandTwoStringZeroes.length()); i++) {
 			zeroesString += "0";
 		}
 		
 		this.operandTwoStringZeroes = zeroesString + this.operandTwoStringZeroes; 
-		
-		System.out.println(this.operandOneStringZeroes);
-		System.out.println(this.operandTwoStringZeroes);
 	}
-	
-	
 	
 	private Stack stringToStack (String operand) {
 		
 		Stack operandStack = new Stack(operand.length());
-		
+				
 		for (int i = 0; i < operand.length(); i++) {
 			operandStack.push(Character.getNumericValue(operand.charAt(i)));
 		}
 		
 		return operandStack;
+	}
+	
+	public Stack calcSum (Stack operandOne, Stack operandTwo) {
+		
+		boolean carry = false;
+		int tempSum;
+		int carryNum = 1;
+		
+		Stack sum = new Stack(operandOne.getNumStacks());
+		
+		for(int i = 0; i < operandOne.getNumStacks(); i++) {
+			
+			if(carry == true) {
+				tempSum = operandOne.pop() + operandTwo.pop() + carryNum;
+				if (tempSum > 9) {
+					carry   = true;
+					tempSum = tempSum - 10;
+				}else {
+					carry = false;
+				}
+			}else {
+				tempSum = operandOne.pop() + operandTwo.pop();
+				if (tempSum > 9) {
+					carry   = true;
+					tempSum = tempSum - 10;
+				}else {
+					carry = false;
+				}
+			}
+			
+			
+			sum.push(tempSum);
+			
+			System.out.println(tempSum);
+;		}
+
+		
+		return sum;
 	}
 	
 	

@@ -12,9 +12,13 @@
 public class Stack {
 
 	private StackNode top;
+	private int maxSize;
+	private int numStacks;
 	
 	Stack(int size){
 		top = null;
+		this.maxSize = size;
+		numStacks = 0;
 	}
 	
 	private class StackNode{
@@ -33,12 +37,21 @@ public class Stack {
 	
 	public void push (int num) {
 		this.top = new StackNode(num, this.top);
+		numStacks++;
 	}
 	
 	public int pop () {
 		int topNum = top.num;
 		StackNode tmp   = top.next;
 		this.top = tmp;
+		numStacks--;
+		
 		return topNum;
 	}
+	
+	public int getNumStacks() {
+		return this.numStacks;
+	}
+
+
 }

@@ -3,18 +3,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 class BigNumCalculatorTest {
-
-/*	@Test
-	void stringToStacktest() {
-		
-		BigNumCalculator test = new BigNumCalculator("12345");
-		
-		assertEquals(test.operandOne.pop(), 5);
-		assertEquals(test.operandOne.pop(), 4);
-		assertEquals(test.operandOne.pop(), 3);
-		assertEquals(test.operandOne.pop(), 2);
-		assertEquals(test.operandOne.pop(), 1);
-	}*/
 	
 	@Test
 	void parseStringTest() {
@@ -84,11 +72,85 @@ class BigNumCalculatorTest {
 		assertEquals(testExpression10.operandOneStringZeroes, "02874");
 		assertEquals(testExpression10.operandTwoStringZeroes, "00039");
 		
-		//BigNumCalculator testExpression11 = new BigNumCalculator("3003 + -90");
-		//assertEquals(testExpression11.operandOneStringZeroes, "03003");
-		//assertEquals(testExpression11.operandTwoStringZeroes, "00090");
+		BigNumCalculator testExpression11 = new BigNumCalculator("3003 + -90");
+		assertEquals(testExpression11.operandOneStringZeroes, "03003");
+		assertEquals(testExpression11.operandTwoStringZeroes, "00090");
+		
+		BigNumCalculator test = new BigNumCalculator("2345 + 123");
+		assertEquals(test.operandOneStringZeroes, "02345");
+		assertEquals(test.operandTwoStringZeroes, "00123");
+
 		
 
 	}
+	@Test
+	void stringToStacktest() {
+		
+		BigNumCalculator test2 = new BigNumCalculator("2345 + 123");
+		
+		assertEquals(test2.operandOneStack.pop(), 5);
+		assertEquals(test2.operandOneStack.pop(), 4);
+		assertEquals(test2.operandOneStack.pop(), 3);
+		
+		assertEquals(test2.operandTwoStack.pop(), 3);
+		assertEquals(test2.operandTwoStack.pop(), 2);
+		assertEquals(test2.operandTwoStack.pop(), 1);
+		
+		BigNumCalculator test3 = new BigNumCalculator("7682 + -18239");
+		
+		assertEquals(test3.operandOneStack.pop(), 9);
+		assertEquals(test3.operandOneStack.pop(), 3);
+		assertEquals(test3.operandOneStack.pop(), 2);
+		
+		assertEquals(test3.operandTwoStack.pop(), 2);
+		assertEquals(test3.operandTwoStack.pop(), 8);
+		assertEquals(test3.operandTwoStack.pop(), 6);
+		
+		BigNumCalculator test4 = new BigNumCalculator("-945783 + -1823");
+		
+		assertEquals(test4.operandOneStack.pop(), 3);
+		assertEquals(test4.operandOneStack.pop(), 8);
+		assertEquals(test4.operandOneStack.pop(), 7);
+		
+		assertEquals(test4.operandTwoStack.pop(), 3);
+		assertEquals(test4.operandTwoStack.pop(), 2);
+		assertEquals(test4.operandTwoStack.pop(), 8);
+		
+		BigNumCalculator test5 = new BigNumCalculator("-945783 - -1823");
+		
+		assertEquals(test5.operandOneStack.pop(), 3);
+		assertEquals(test5.operandOneStack.pop(), 8);
+		assertEquals(test5.operandOneStack.pop(), 7);
+		
+		assertEquals(test5.operandTwoStack.pop(), 3);
+		assertEquals(test5.operandTwoStack.pop(), 2);
+		assertEquals(test5.operandTwoStack.pop(), 8);
+		
+		BigNumCalculator test6 = new BigNumCalculator("945783 - -1823");
+		
+		assertEquals(test6.operandOneStack.pop(), 3);
+		assertEquals(test6.operandOneStack.pop(), 8);
+		assertEquals(test6.operandOneStack.pop(), 7);
+		
+		assertEquals(test6.operandTwoStack.pop(), 3);
+		assertEquals(test6.operandTwoStack.pop(), 2);
+		assertEquals(test6.operandTwoStack.pop(), 8);
+		
+	}
 	
+	@Test
+	void sumTest() {
+		
+		BigNumCalculator testExpression12 = new BigNumCalculator("-39 + 2874");
+		assertEquals(testExpression12.sumOrDifference.pop(), 2);
+		assertEquals(testExpression12.sumOrDifference.pop(), 9);
+		assertEquals(testExpression12.sumOrDifference.pop(), 1);
+		assertEquals(testExpression12.sumOrDifference.pop(), 3);
+
+
+
+
+		
+
+	}
 }
