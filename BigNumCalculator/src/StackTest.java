@@ -18,8 +18,7 @@ class StackTest {
 		assertEquals(intStack.pop(),3);
 		assertEquals(intStack.pop(),2);
 		assertEquals(intStack.pop(),1);
-
-
+		assertEquals(intStack.isEmpty(),true);
 	}
 
 }
