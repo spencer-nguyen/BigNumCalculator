@@ -83,7 +83,7 @@ class BigNumCalculatorTest {
 		
 
 	}
-	@Test
+	/*@Test
 	void stringToStacktest() {
 		
 		BigNumCalculator test2 = new BigNumCalculator("2345 + 123");
@@ -136,17 +136,18 @@ class BigNumCalculatorTest {
 		assertEquals(test6.operandTwoStack.pop(), 2);
 		assertEquals(test6.operandTwoStack.pop(), 8);
 		
-	}
+	}*/
 	
 	@Test
 	void sumTest() {
 		
 		BigNumCalculator testExpression12 = new BigNumCalculator("-39 + 2874");
+		assertEquals(testExpression12.sumOrDifference.pop(), 0);
 		assertEquals(testExpression12.sumOrDifference.pop(), 2);
-		assertEquals(testExpression12.sumOrDifference.pop(), 9);
-		assertEquals(testExpression12.sumOrDifference.pop(), 1);
-		assertEquals(testExpression12.sumOrDifference.pop(), 3);
 
+		BigNumCalculator testExpression13 = new BigNumCalculator("1 + 1");
+		assertEquals(testExpression13.sumOrDifference.pop(), 0);
+		assertEquals(testExpression13.sumOrDifference.pop(), 2);
 
 
 

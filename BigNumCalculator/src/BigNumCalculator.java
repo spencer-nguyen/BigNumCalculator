@@ -122,7 +122,7 @@ public class BigNumCalculator {
 	private Stack stringToStack (String operand) {
 		
 		Stack operandStack = new Stack(operand.length());
-				
+
 		for (int i = 0; i < operand.length(); i++) {
 			operandStack.push(Character.getNumericValue(operand.charAt(i)));
 		}
@@ -135,10 +135,11 @@ public class BigNumCalculator {
 		boolean carry = false;
 		int tempSum;
 		int carryNum = 1;
+		int stackSize = operandOne.getNumStacks();
 		
 		Stack sum = new Stack(operandOne.getNumStacks());
-		
-		for(int i = 0; i < operandOne.getNumStacks(); i++) {
+			
+		for(int i = 0; i < stackSize; i++) {
 			
 			if(carry == true) {
 				tempSum = operandOne.pop() + operandTwo.pop() + carryNum;
@@ -156,13 +157,11 @@ public class BigNumCalculator {
 				}else {
 					carry = false;
 				}
-			}
-			
+			}		
 			
 			sum.push(tempSum);
-			
 			System.out.println(tempSum);
-;		}
+		}
 
 		
 		return sum;
