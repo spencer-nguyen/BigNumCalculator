@@ -50,7 +50,8 @@ public class BigNumCalculator {
 		operandOneStack = stringToStack(operandOneStringZeroes);
 		operandTwoStack = stringToStack(operandTwoStringZeroes);
 		
-		sumOrDifference = calcSum(operandOneStack, operandTwoStack);
+		//sumOrDifference = calcSum(operandOneStack, operandTwoStack);
+		sumOrDifference = calcDifference(operandOneStack, operandTwoStack);
 
 	}
 	
@@ -133,7 +134,7 @@ public class BigNumCalculator {
 	public Stack calcSum (Stack operandOne, Stack operandTwo) {
 		
 		boolean carry = false;
-		int tempSum;
+		int tempSum = 0;
 		int carryNum = 1;
 		int stackSize = operandOne.getNumStacks();
 		
@@ -160,13 +161,46 @@ public class BigNumCalculator {
 			}		
 			
 			sum.push(tempSum);
-			System.out.println(tempSum);
 		}
 
-		
 		return sum;
 	}
 	
+	public Stack calcDifference (Stack operandOne, Stack operandTwo) {
+		
+		boolean borrow = false;
+		int tempDiff = 0;
+		int borrowNum = 1;
+		int stackSize = operandOne.getNumStacks();
+		
+		Stack diff = new Stack(operandOne.getNumStacks());
+			
+		for(int i = 0; i < stackSize; i++) {
+			
+			if(borrow == true) {
+				if(operandOne.peekTop() < operandTwo.peekTop()) {
+					borrow = true;
+					tempDiff = (operandOne.pop() - borrowNum + 10 ) - operandTwo.pop();
+				}else {
+					tempDiff = (operandOne.pop() - borrowNum) - operandTwo.pop();
+					borrow = false;
+				}
+			}else {
+				if(operandOne.peekTop() < operandTwo.peekTop()) {
+					borrow = true;
+					tempDiff = (operandOne.pop() + 10) - operandTwo.pop();
+				}else {
+					tempDiff = operandOne.pop() - operandTwo.pop();
+					borrow = false;
+				}
+			}
+			
+			diff.push(tempDiff);
+			System.out.println(tempDiff);
+		}
+
+		return diff;
+	}
 	
 	
 }

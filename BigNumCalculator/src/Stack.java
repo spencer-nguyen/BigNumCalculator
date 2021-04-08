@@ -53,5 +53,7 @@ public class Stack {
 		return this.numStacks;
 	}
 
-
+	public int peekTop() {
+		return this.top.num;
+	}
 }

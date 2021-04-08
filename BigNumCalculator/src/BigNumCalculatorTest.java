@@ -138,17 +138,46 @@ class BigNumCalculatorTest {
 		
 	}*/
 	
-	@Test
+	/*@Test
 	void sumTest() {
 		
 		BigNumCalculator testExpression12 = new BigNumCalculator("-39 + 2874");
 		assertEquals(testExpression12.sumOrDifference.pop(), 0);
 		assertEquals(testExpression12.sumOrDifference.pop(), 2);
+		assertEquals(testExpression12.sumOrDifference.pop(), 9);
+
 
 		BigNumCalculator testExpression13 = new BigNumCalculator("1 + 1");
 		assertEquals(testExpression13.sumOrDifference.pop(), 0);
 		assertEquals(testExpression13.sumOrDifference.pop(), 2);
 
+
+
+		
+
+	}*/
+	
+	@Test
+	void diffTest() {
+		
+		BigNumCalculator testExpression14 = new BigNumCalculator("2874 - 39");
+		assertEquals(testExpression14.sumOrDifference.pop(), 0);
+		assertEquals(testExpression14.sumOrDifference.pop(), 2);
+		assertEquals(testExpression14.sumOrDifference.pop(), 8);
+		assertEquals(testExpression14.sumOrDifference.pop(), 3);
+
+
+
+		BigNumCalculator testExpression15 = new BigNumCalculator("1 - 1");
+		assertEquals(testExpression15.sumOrDifference.pop(), 0);
+		assertEquals(testExpression15.sumOrDifference.pop(), 0);
+
+		BigNumCalculator testExpression16 = new BigNumCalculator("-39 - 1123");
+		assertEquals(testExpression16.sumOrDifference.pop(), 0);
+		assertEquals(testExpression16.sumOrDifference.pop(), 1);
+		assertEquals(testExpression16.sumOrDifference.pop(), 0);
+		assertEquals(testExpression16.sumOrDifference.pop(), 8);
+		assertEquals(testExpression16.sumOrDifference.pop(), 4);
 
 
 		
