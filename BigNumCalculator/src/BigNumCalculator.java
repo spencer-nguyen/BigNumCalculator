@@ -22,6 +22,7 @@ public class BigNumCalculator {
 	private boolean operandOneIsNegative;// true is negative, false is positive
 	private boolean operandTwoIsNegative;// true is negative, false is positive
 	private boolean resultStackIsNegative;
+	private boolean operandOneBigger;
 	
 	private int operandOneLength;
 	private int operandTwoLength;
@@ -48,9 +49,11 @@ public class BigNumCalculator {
 		
 		this.operandOneStack = stringToStack(operandOneStringZeroes);
 		this.operandTwoStack = stringToStack(operandTwoStringZeroes);
-		
+
 		determineAddOrSubtract();
+
 		printCalculation();
+
 	}
 	
 	private void parseString(String expression) {
@@ -128,6 +131,28 @@ public class BigNumCalculator {
 		}
 	}
 	
+	private void determineBiggerOrSmaller() {
+		
+		if(this.operandOneLength > this.operandTwoLength) {
+			this.operandOneBigger = true;
+		}
+		else if(this.operandTwoLength > this.operandOneLength){
+			this.operandOneBigger = false;
+		}
+		else {
+			for(int i = 0; i < operandOneLength; i++) {
+				if(Character.getNumericValue(operandOneStringZeroes.charAt(i)) > Character.getNumericValue(operandTwoStringZeroes.charAt(i))) {
+					this.operandOneBigger = true;
+					break;
+				}
+				else if(Character.getNumericValue(operandOneStringZeroes.charAt(i)) > Character.getNumericValue(operandTwoStringZeroes.charAt(i))) {
+					this.operandOneBigger = false;
+					break;
+				}
+			}
+		}
+	}
+	
 	private Stack stringToStack (String operand) {
 		
 		Stack operandStack = new Stack(operand.length());
@@ -150,7 +175,7 @@ public class BigNumCalculator {
 		else if(this.operandOneIsNegative == true && this.add && this.operandTwoIsNegative == false){
 			
 			this.resultStack = calcDifference(this.operandOneStack, this.operandTwoStack);
-			if(Math.abs(Integer.parseInt(operandTwoString)) > Math.abs(Integer.parseInt(operandOneString))) {
+			if(this.operandOneBigger == false) {
 				this.resultStackIsNegative = false;
 			}
 			else {
@@ -160,7 +185,7 @@ public class BigNumCalculator {
 		else if(this.operandOneIsNegative == false && this.add && this.operandTwoIsNegative == true) {
 			
 			this.resultStack = calcDifference(this.operandOneStack, this.operandTwoStack);
-			if(Math.abs(Integer.parseInt(operandTwoString)) > Math.abs(Integer.parseInt(operandOneString))) {
+			if(this.operandOneBigger == false) {
 				this.resultStackIsNegative = true;
 			}
 			else {
@@ -175,7 +200,7 @@ public class BigNumCalculator {
 		else if(this.operandOneIsNegative == false && this.subtract && this.operandTwoIsNegative == false) {
 			
 			this.resultStack = calcDifference(this.operandOneStack, this.operandTwoStack);
-			if(Math.abs(Integer.parseInt(operandTwoString)) > Math.abs(Integer.parseInt(operandOneString))) {
+			if(this.operandOneBigger == false) {
 				this.resultStackIsNegative = true;
 			}
 			else {
@@ -195,7 +220,7 @@ public class BigNumCalculator {
 		else if(this.operandOneIsNegative == true && subtract && this.operandTwoIsNegative == true) {
 			
 			this.resultStack = calcDifference(this.operandOneStack, this.operandTwoStack);
-			if(Math.abs(Integer.parseInt(operandTwoString)) > Math.abs(Integer.parseInt(operandOneString))) {
+			if(this.operandOneBigger == false) {
 				this.resultStackIsNegative = false;
 			}
 			else {
@@ -215,7 +240,7 @@ public class BigNumCalculator {
 		Stack sum = new Stack(operandOne.getNumStacks());
 		Stack temp = new Stack(operandOne.getNumStacks());
 		
-		if(Math.abs(Integer.parseInt(operandTwoString)) > Math.abs(Integer.parseInt(operandOneString))) {
+		if(this.operandOneBigger == false) {
 			temp = operandOne;
 			operandOne = operandTwo;
 			operandTwo = temp;
@@ -260,7 +285,7 @@ public class BigNumCalculator {
 		Stack diff = new Stack(operandOne.getNumStacks());
 		Stack temp = new Stack(operandOne.getNumStacks());
 		
-		if(Math.abs(Integer.parseInt(operandTwoString)) > Math.abs(Integer.parseInt(operandOneString))) {
+		if(this.operandOneBigger == false) {
 			temp = operandOne;
 			operandOne = operandTwo;
 			operandTwo = temp;
