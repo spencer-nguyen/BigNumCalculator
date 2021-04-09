@@ -46,14 +46,12 @@ public class BigNumCalculator {
 		this.operandTwoIsNegative = determineNegOrPos(operandTwoString);
 		
 		appendZeroes();
+		determineBiggerOrSmaller();
 		
 		this.operandOneStack = stringToStack(operandOneStringZeroes);
 		this.operandTwoStack = stringToStack(operandTwoStringZeroes);
 
 		determineAddOrSubtract();
-
-		printCalculation();
-
 	}
 	
 	private void parseString(String expression) {
