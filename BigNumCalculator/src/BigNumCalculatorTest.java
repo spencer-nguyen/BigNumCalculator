@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 class BigNumCalculatorTest {
 	
-	@Test
+	/*@Test
 	void parseStringTest() {
 		
 		BigNumCalculator testExpression1 = new BigNumCalculator("-2 + -4");
@@ -83,7 +83,7 @@ class BigNumCalculatorTest {
 		
 
 	}
-	/*@Test
+	@Test
 	void stringToStacktest() {
 		
 		BigNumCalculator test2 = new BigNumCalculator("2345 + 123");
@@ -136,9 +136,9 @@ class BigNumCalculatorTest {
 		assertEquals(test6.operandTwoStack.pop(), 2);
 		assertEquals(test6.operandTwoStack.pop(), 8);
 		
-	}*/
+	}
 	
-	/*@Test
+	@Test
 	void sumTest() {
 		
 		BigNumCalculator testExpression12 = new BigNumCalculator("-39 + 2874");
@@ -155,7 +155,7 @@ class BigNumCalculatorTest {
 
 		
 
-	}*/
+	}
 	
 	@Test
 	void diffTest() {
@@ -179,8 +179,6 @@ class BigNumCalculatorTest {
 		assertEquals(testExpression16.sumOrDifference.pop(), 8);
 		assertEquals(testExpression16.sumOrDifference.pop(), 4);
 
-
-		
-
-	}
+	}*/
+	
 }
