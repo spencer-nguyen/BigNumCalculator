@@ -31,15 +31,27 @@ public class Stack {
 		}
 	}
 	
+	/**
+	 * This method returns a true boolean if the stack is empty.
+	 * @return
+	 */
 	public boolean isEmpty() {
 		return top == null;
 	}
 	
+	/**
+	 * This method pushes a new int onto the stack.
+	 * @param num
+	 */
 	public void push (int num) {
 		this.top = new StackNode(num, this.top);
 		numStacks++;
 	}
 	
+	/**
+	 * This method pops the top int off the stack and sets the next int to top.
+	 * @return
+	 */
 	public int pop () {
 		int topNum = top.num;
 		StackNode tmp   = top.next;
@@ -49,10 +61,19 @@ public class Stack {
 		return topNum;
 	}
 	
+	/**
+	 * This method gets the size of the stack. This value is used in the constructor 
+	 * for the size of the result and temp stacks.
+	 * @return
+	 */
 	public int getNumStacks() {
 		return this.numStacks;
 	}
 
+	/**
+	 * This method returns the value of the top of the stack but does not pop.
+	 * @return
+	 */
 	public int peekTop() {
 		return this.top.num;
 	}
