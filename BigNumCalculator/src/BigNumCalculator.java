@@ -167,6 +167,11 @@ public class BigNumCalculator {
 				this.resultStackIsNegative = false; 
 			}
 		}
+		else if(this.operandOneIsNegative == true && this.add && this.operandTwoIsNegative == true) {
+			
+			this.resultStack = calcSum(this.operandOneStack, this.operandTwoStack);
+			this.resultStackIsNegative = true;
+		}
 		else if(this.operandOneIsNegative == false && this.subtract && this.operandTwoIsNegative == false) {
 			
 			this.resultStack = calcDifference(this.operandOneStack, this.operandTwoStack);
